@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="only light">
+<meta name="supported-color-schemes" content="light">
+<title>John Partidas — Ingeniero de Proyectos de Capital</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0f1a2e;
+  --navy-mid: #1a2744;
+  --blue: #2e5e8c;
+  --teal: #1b7a6e;
+  --teal-light: #25a393;
+  --gold: #d4a03c;
+  --gold-dim: #b8892f;
+  --cream: #f8f5ef;
+  --warm-gray: #e8e4dc;
+  --text: #1c1c1c;
+  --text-secondary: #5d6d7e;
+  --white: #ffffff;
+  --red: #c0392b;
+  --green: #27ae60;
+  --amber: #e67e22;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: only light;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background-color: #f8f5ef !important;
+  color: #1c1c1c !important;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── HERO ─────────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  background: var(--navy);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 2rem;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -30%;
+  width: 80vw;
+  height: 80vw;
+  background: radial-gradient(circle, rgba(27,122,110,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -40%;
+  left: -20%;
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(circle, rgba(212,160,60,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-content {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+}
+
+.hero-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--teal-light);
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.3s forwards;
+}
+
+.hero-name {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(3rem, 8vw, 6rem);
+  color: var(--white);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  margin-bottom: 0.5rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.5s forwards;
+}
+
+.hero-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  color: var(--gold);
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.7s forwards;
+}
+
+.hero-proposition {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+  color: rgba(255,255,255,0.7);
+  font-style: italic;
+  max-width: 600px;
+  margin: 0 auto 3rem;
+  line-height: 1.5;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.9s forwards;
+}
+
+.hero-proposition strong {
+  color: var(--teal-light);
+  font-style: normal;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.8s 1.1s forwards;
+}
+
+.hero-stat {
+  text-align: center;
+}
+
+.hero-stat-number {
+  font-family: 'Instrument Serif', serif;
+  font-size: 2.5rem;
+  color: var(--gold);
+  display: block;
+}
+
+.hero-stat-label {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255,255,255,0.3);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  animation: pulse 2s infinite;
+}
+
+/* ── NAVIGATION ───────────────────────────────────── */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(15,26,46,0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.nav-inner {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-width: max-content;
+}
+
+.nav a {
+  padding: 1rem 1.2rem;
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: all 0.3s;
+  border-bottom: 2px solid transparent;
+  font-weight: 500;
+}
+
+.nav a:hover, .nav a.active {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+}
+
+/* ── SECTIONS ─────────────────────────────────────── */
+.section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+  background-color: #f8f5ef !important;
+}
+
+.section-header {
+  margin-bottom: 3rem;
+}
+
+.section-number {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: #1b7a6e !important;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.section-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: #111111 !important;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.section-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  margin-top: 0.8rem;
+  max-width: 600px;
+}
+
+.divider {
+  width: 60px;
+  height: 3px;
+  background: var(--gold);
+  margin: 1.5rem 0;
+}
+
+/* ── DIFFERENTIATORS ──────────────────────────────── */
+.diff-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.diff-card {
+  background: var(--white);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 2px;
+  padding: 2rem;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.diff-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--teal);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.diff-card:hover::before { transform: scaleX(1); }
+.diff-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+
+.diff-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--navy);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.2rem;
+  font-size: 1rem;
+  color: var(--gold);
+}
+
+.diff-title {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--navy);
+  margin-bottom: 0.6rem;
+}
+
+.diff-text {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ── DOMAINS ──────────────────────────────────────── */
+.domains-container {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 0;
+  background: var(--white);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 2px;
+  overflow: hidden;
+  min-height: 500px;
+}
+
+.domain-tabs {
+  background: var(--navy);
+  padding: 0;
+}
+
+.domain-tab {
+  display: block;
+  padding: 1.2rem 1.5rem;
+  color: rgba(255,255,255,0.5);
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  transition: all 0.3s;
+  border-left: 3px solid transparent;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.domain-tab:hover { color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.03); }
+.domain-tab.active {
+  color: var(--gold);
+  background: rgba(255,255,255,0.06);
+  border-left-color: var(--gold);
+}
+
+.domain-tab-number {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--teal-light);
+  display: block;
+  margin-bottom: 0.2rem;
+  letter-spacing: 0.15em;
+}
+
+.domain-content {
+  padding: 2.5rem;
+}
+
+.domain-panel { display: none; }
+.domain-panel.active { display: block; animation: fadeIn 0.4s; }
+
+.domain-panel h3 {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.8rem;
+  color: var(--navy);
+  margin-bottom: 0.5rem;
+}
+
+.domain-scope {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.domain-capabilities {
+  list-style: none;
+  margin-bottom: 1.5rem;
+}
+
+.domain-capabilities li {
+  padding: 0.5rem 0 0.5rem 1.2rem;
+  position: relative;
+  font-size: 0.88rem;
+  color: var(--text);
+}
+
+.domain-capabilities li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--teal);
+  font-weight: 600;
+}
+
+.domain-standard {
+  background: rgba(27,122,110,0.05);
+  border-left: 3px solid var(--teal);
+  padding: 1rem 1.2rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.domain-standard strong {
+  color: var(--navy);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+/* ── METHODOLOGY ──────────────────────────────────── */
+.method-timeline {
+  position: relative;
+  margin-top: 2rem;
+}
+
+.method-timeline::before {
+  content: '';
+  position: absolute;
+  left: 28px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--teal), var(--gold));
+}
+
+.method-step {
+  display: flex;
+  gap: 2rem;
+  padding: 1.5rem 0;
+  position: relative;
+}
+
+.method-number {
+  width: 56px;
+  height: 56px;
+  min-width: 56px;
+  background: var(--navy);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.3rem;
+  color: var(--gold);
+  position: relative;
+  z-index: 2;
+}
+
+.method-body h4 {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--navy);
+  margin-bottom: 0.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.method-body p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.method-output {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--teal);
+  background: rgba(27,122,110,0.08);
+  padding: 0.3rem 0.7rem;
+  border-radius: 2px;
+  letter-spacing: 0.05em;
+}
+
+/* ── CASES ────────────────────────────────────────── */
+.cases-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.case-card {
+  background: var(--white);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 2px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.case-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+}
+
+.case-header {
+  background: var(--navy);
+  padding: 1.5rem;
+}
+
+.case-header h4 {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.15rem;
+  color: var(--white);
+  line-height: 1.3;
+}
+
+.case-industry {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--teal-light);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.case-body { padding: 1.5rem; }
+
+.case-body p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.case-metrics {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.case-metric {
+  text-align: center;
+  min-width: 80px;
+}
+
+.case-metric-value {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.4rem;
+  color: var(--navy);
+  display: block;
+}
+
+.case-metric-label {
+  font-size: 0.6rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.case-domains {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.case-domain-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem;
+  padding: 0.2rem 0.5rem;
+  background: rgba(27,122,110,0.08);
+  color: var(--teal);
+  border-radius: 2px;
+  letter-spacing: 0.05em;
+}
+
+/* ── INDUSTRIES ───────────────────────────────────── */
+.industries-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1px;
+  background: rgba(0,0,0,0.06);
+  border: 1px solid rgba(0,0,0,0.06);
+  margin-top: 2rem;
+}
+
+.industry-cell {
+  background: var(--white);
+  padding: 1.5rem;
+}
+
+.industry-name {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--navy);
+  margin-bottom: 0.4rem;
+}
+
+.industry-standards {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--teal);
+  line-height: 1.8;
+}
+
+.industry-context {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+}
+
+/* ── TOOLKIT ──────────────────────────────────────── */
+.toolkit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1px;
+  background: rgba(0,0,0,0.06);
+  border: 1px solid rgba(0,0,0,0.06);
+  margin-top: 2rem;
+}
+
+.tool-cell {
+  background: var(--white);
+  padding: 1.2rem;
+}
+
+.tool-name {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--navy);
+  margin-bottom: 0.3rem;
+}
+
+.tool-use {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.6rem;
+}
+
+.proficiency-bar {
+  height: 3px;
+  background: var(--warm-gray);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.proficiency-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.prof-expert { background: var(--teal); }
+.prof-advanced { background: var(--blue); }
+.prof-intermediate { background: var(--gold); }
+
+/* ── VISION ───────────────────────────────────────── */
+.vision-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.vision-card {
+  background: var(--white);
+  border: 1px solid rgba(0,0,0,0.06);
+  padding: 2rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.vision-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+}
+
+.vision-card:nth-child(1)::after { background: var(--teal); }
+.vision-card:nth-child(2)::after { background: var(--gold); }
+.vision-card:nth-child(3)::after { background: var(--navy); }
+
+.vision-horizon {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 0.8rem;
+}
+
+.vision-goal {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.2rem;
+  color: var(--navy);
+  line-height: 1.3;
+  margin-bottom: 0.8rem;
+}
+
+.vision-action {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* ── FOOTER ───────────────────────────────────────── */
+.footer {
+  background: var(--navy);
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.footer-name {
+  font-family: 'Instrument Serif', serif;
+  font-size: 2rem;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.footer-role {
+  color: var(--gold);
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.footer-tags {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.footer-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--teal-light);
+  padding: 0.3rem 0.8rem;
+  border: 1px solid rgba(27,122,110,0.3);
+  border-radius: 2px;
+  letter-spacing: 0.1em;
+}
+
+.footer-contact {
+  color: rgba(255,255,255,0.4);
+  font-size: 0.75rem;
+}
+
+.footer-contact a {
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+}
+
+.footer-version {
+  margin-top: 2rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 0.1em;
+}
+
+/* ── ANIMATIONS ───────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── RESPONSIVE ───────────────────────────────────── */
+@media (max-width: 768px) {
+  .domains-container {
+    grid-template-columns: 1fr;
+  }
+  .domain-tabs {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .domain-tab {
+    white-space: nowrap;
+    border-left: none;
+    border-bottom: 3px solid transparent;
+    padding: 1rem;
+  }
+  .domain-tab.active { border-bottom-color: var(--gold); border-left: none; }
+  .vision-cards { grid-template-columns: 1fr; }
+  .hero-stats { gap: 1.5rem; }
+  .section { padding: 3rem 1.5rem; }
+  .cases-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-content">
+    <h1 class="hero-name">John Partidas</h1>
+    <p class="hero-title">Ingeniero de Proyectos de Capital</p>
+    <p class="hero-proposition">
+      Ingeniero de procesos con formación química e instrumentación que opera en la intersección de
+      <strong>ingeniería industrial</strong>, <strong>gestión de portafolio CAPEX</strong> y
+      <strong>aceleración con IA</strong> — en industrias reguladas donde un error técnico tiene consecuencias reales.
+    </p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-number">20+</span>
+        <span class="hero-stat-label">Proyectos activos</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-number">4</span>
+        <span class="hero-stat-label">Industrias reguladas</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-number">9+</span>
+        <span class="hero-stat-label">Años experiencia</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-number">60%</span>
+        <span class="hero-stat-label">Reducción tiempo con IA</span>
+      </div>
+    </div>
+  </div>
+  <span class="scroll-hint">↓ Explorar</span>
+</section>
+
+<!-- ═══ NAV ════════════════════════════════════════════ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#valor">Propuesta</a>
+    <a href="#dominios">6 Dominios</a>
+    <a href="#metodologia">Metodología</a>
+    <a href="#casos">Casos</a>
+    <a href="#industrias">Industrias</a>
+    <a href="#toolkit">Toolkit</a>
+    <a href="#vision">Visión</a>
+  </div>
+</nav>
+
+<!-- ═══ PROPUESTA DE VALOR ═════════════════════════════ -->
+<section class="section" id="valor">
+  <div class="section-header reveal">
+    <span class="section-number">01 — Propuesta de Valor</span>
+    <h2 class="section-title">Tres cosas que rara vez<br>coexisten en un ingeniero</h2>
+    <div class="divider"></div>
+    <p class="section-subtitle">No soy un PM que delega lo técnico, ni un ingeniero que no sabe presentar a gerencia. Opero en la intersección.</p>
+  </div>
+
+  <div class="diff-grid">
+    <div class="diff-card reveal">
+      <div class="diff-icon">⚗</div>
+      <div class="diff-title">Ingeniero de procesos, no solo de proyectos</div>
+      <div class="diff-text">Formación en ingeniería química e instrumentación industrial. Entiendo el proceso antes de gestionar el proyecto — detecto riesgos que un PM tradicional no ve: NPSH, viscosidad, compatibilidad de materiales, condiciones de diseño vs. operación.</div>
+    </div>
+    <div class="diff-card reveal">
+      <div class="diff-icon">🌐</div>
+      <div class="diff-title">Multi-industria regulada</div>
+      <div class="diff-text">Alimentaria (azúcar, pet food), oil & gas (PDVSA, Shell DEPs), supresión de incendios (NFPA), infraestructura institucional, redes eléctricas MT/BT. Genero documentación avanzada bajo normativa internacional para cualquier sector regulado.</div>
+    </div>
+    <div class="diff-card reveal">
+      <div class="diff-icon">⚡</div>
+      <div class="diff-title">Ejecución acelerada con IA</div>
+      <div class="diff-text">Uso sistemático de IA como herramienta de ingeniería — no como novelty. Auditoría de modelos de cálculo (1,253 fórmulas auditadas), generación de documentación técnica, análisis de datos SAP. Entregables profesionales en 40-60% menos tiempo.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 6 DOMINIOS ═════════════════════════════════════ -->
+<section class="section" id="dominios">
+  <div class="section-header reveal">
+    <span class="section-number">02 — Los 6 Dominios</span>
+    <h2 class="section-title">Lo que hago, cómo lo hago<br>y bajo qué estándar</h2>
+    <div class="divider"></div>
+    <p class="section-subtitle">Cada proyecto activa múltiples dominios simultáneamente. No son silos — son capacidades integradas.</p>
+  </div>
+
+  <div class="domains-container reveal">
+    <div class="domain-tabs">
+      <button class="domain-tab active" onclick="showDomain(0)">
+        <span class="domain-tab-number">D1</span>
+        Ingeniería de Procesos
+      </button>
+      <button class="domain-tab" onclick="showDomain(1)">
+        <span class="domain-tab-number">D2</span>
+        Evaluación de Inversiones
+      </button>
+      <button class="domain-tab" onclick="showDomain(2)">
+        <span class="domain-tab-number">D3</span>
+        Procurement Técnico
+      </button>
+      <button class="domain-tab" onclick="showDomain(3)">
+        <span class="domain-tab-number">D4</span>
+        Portafolio y PMO
+      </button>
+      <button class="domain-tab" onclick="showDomain(4)">
+        <span class="domain-tab-number">D5</span>
+        Comunicación Ejecutiva
+      </button>
+      <button class="domain-tab" onclick="showDomain(5)">
+        <span class="domain-tab-number">D6</span>
+        Aceleración con IA
+      </button>
+    </div>
+
+    <div class="domain-content">
+      <!-- D1 -->
+      <div class="domain-panel active">
+        <h3>Ingeniería de Procesos Industriales</h3>
+        <div class="domain-scope">Diseño, análisis y documentación de procesos en industrias reguladas — alimentaria, química, oil & gas, infraestructura crítica. Procesos térmicos, hidráulicos, neumáticos, transporte de sólidos y líquidos, servicios industriales y supresión de incendios.</div>
+        <ul class="domain-capabilities">
+          <li>P&IDs bajo ANSI/ISA-5.1-2009 con data blocks normativos completos</li>
+          <li>Codificación de equipos ISO 81346 y estándares corporativos (Shell DEPs, PDVSA L-TP)</li>
+          <li>Dimensionamiento de equipos rotativos: bombas (Darcy-Weisbach, NPSH, ANSI/HI 9.6.7)</li>
+          <li>Balances de masa y energía, simulación (DWSIM, HYSYS, PRO II)</li>
+          <li>Sistemas de supresión (NOVEC FK-5-1-12, NFPA) y redes eléctricas industriales</li>
+          <li>Arquitecturas de control: PLC, VFD, BMS (BACnet, Modbus, OPC-UA)</li>
+        </ul>
+        <div class="domain-standard">
+          <strong>Estándar de entrega</strong>
+          Toda documentación con código de documento, revisión controlada y referencia normativa explícita. Cálculos con supuestos declarados, validación cruzada y análisis de sensibilidad.
+        </div>
+      </div>
+
+      <!-- D2 -->
+      <div class="domain-panel">
+        <h3>Evaluación y Justificación de Inversiones</h3>
+        <div class="domain-scope">Construcción del caso de negocio para inversiones CAPEX: desde la necesidad operacional hasta la presentación ejecutiva para toma de decisión.</div>
+        <ul class="domain-capabilities">
+          <li>Estructura: Inversión → Ahorro → ROI → Payback → Sensibilidad</li>
+          <li>Modelos DCF en Excel para horizontes mayores a 3 años</li>
+          <li>Análisis de escenarios (optimista / base / pesimista) con variables críticas</li>
+          <li>One-pagers ejecutivos: 1 slide = 1 mensaje = 30 segundos para decidir</li>
+          <li>Comparativos de alternativas con criterios ponderados</li>
+        </ul>
+        <div class="domain-standard">
+          <strong>Estándar de entrega</strong>
+          Todo CAPEX lleva ROI, payback y comparativo. Supuestos débiles o datos faltantes se declaran explícitamente. El modelo es auditable.
+        </div>
+      </div>
+
+      <!-- D3 -->
+      <div class="domain-panel">
+        <h3>Gestión de Proveedores y Procurement Técnico</h3>
+        <div class="domain-scope">Ciclo completo de gestión de proveedores técnicos: especificación de requerimientos, RFQ, evaluación comparativa, adjudicación y seguimiento de fabricación.</div>
+        <ul class="domain-capabilities">
+          <li>RFQs formales con alcance técnico, normas, hitos de pago y criterios de aceptación</li>
+          <li>Evaluación multicriterio de proveedores internacionales (matrices ponderadas)</li>
+          <li>Revisión crítica de ofertas: detección de inconsistencias, omisiones, errores de precio</li>
+          <li>Negociación técnica: materiales, plazos, garantías, FAT/SAT</li>
+          <li>Seguimiento de fabricación con hitos y control documental</li>
+        </ul>
+        <div class="domain-standard">
+          <strong>Estándar de entrega</strong>
+          Cuadro comparativo con ranking final y justificación técnico-económica. Brechas de alcance identificadas antes de la recomendación.
+        </div>
+      </div>
+
+      <!-- D4 -->
+      <div class="domain-panel">
+        <h3>Gestión de Portafolio y PMO</h3>
+        <div class="domain-scope">Administración simultánea de múltiples proyectos de capital con visibilidad consolidada de avance, costos, riesgos y acciones.</div>
+        <ul class="domain-capabilities">
+          <li>Portafolio: 20+ proyectos activos, 60+ ideas en pipeline de innovación</li>
+          <li>Control de costos: SAP PS (KSB1, KKBC_ORD, S_ALR_87013558) + Power BI</li>
+          <li>Cronogramas: MS Project y Smartsheet con hitos y ruta crítica</li>
+          <li>Semáforo RAG para estado de proyectos y cumplimiento de acciones</li>
+          <li>Dashboards ejecutivos para reportabilidad mensual multi-negocio</li>
+        </ul>
+        <div class="domain-standard">
+          <strong>Estándar de entrega</strong>
+          Reporte mensual: KPIs cuantificados, % cumplimiento, burn rate, proyectos con atraso y plan de acción. Sin relleno, orientado a decisión.
+        </div>
+      </div>
+
+      <!-- D5 -->
+      <div class="domain-panel">
+        <h3>Comunicación Ejecutiva y Reportabilidad</h3>
+        <div class="domain-scope">Traducción de complejidad técnica y financiera en mensajes claros, concisos y accionables para tomadores de decisión.</div>
+        <ul class="domain-capabilities">
+          <li>Presentaciones: máximo 3 slides (Contexto → Análisis → Decisión)</li>
+          <li>Reportabilidad mensual de 3 unidades de negocio</li>
+          <li>Comunicación PMP: estado + avance + acciones + riesgos + fecha límite</li>
+          <li>Síntesis en formatos de lectura rápida: one-pagers, dashboards, tablas resumen</li>
+          <li>Escalamiento con datos, no con opiniones</li>
+        </ul>
+        <div class="domain-standard">
+          <strong>Estándar de entrega</strong>
+          Cada slide: título accionable + dato clave + recomendación. Si algo no agrega valor a la decisión, no se incluye.
+        </div>
+      </div>
+
+      <!-- D6 -->
+      <div class="domain-panel">
+        <h3>Aceleración con Inteligencia Artificial</h3>
+        <div class="domain-scope">Uso sistemático de IA como herramienta de ingeniería y productividad — no como novelty, sino como multiplicador de capacidad técnica.</div>
+        <ul class="domain-capabilities">
+          <li>Auditoría de modelos Excel: verificación de fórmulas, detección de bugs críticos</li>
+          <li>Generación de documentación técnica: RFQs, data blocks, informes, especificaciones</li>
+          <li>Análisis de datos operacionales desde SAP para reportabilidad inmediata</li>
+          <li>Construcción de entregables ejecutivos (PPTX, XLSX, DOCX) en tiempo reducido</li>
+          <li>Estructuración de prompts optimizados para ingeniería y gestión</li>
+        </ul>
+        <div class="domain-standard">
+          <strong>Estándar de entrega</strong>
+          La IA es herramienta, no sustituto del criterio. Todo output pasa revisión técnica humana. Objetivo: reducir tiempo 40-60% manteniendo calidad.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ METODOLOGÍA ════════════════════════════════════ -->
+<section class="section" id="metodologia">
+  <div class="section-header reveal">
+    <span class="section-number">03 — Metodología</span>
+    <h2 class="section-title">5 fases que garantizan<br>consistencia entre USD 50K y USD 1M</h2>
+    <div class="divider"></div>
+  </div>
+
+  <div class="method-timeline reveal">
+    <div class="method-step">
+      <div class="method-number">1</div>
+      <div class="method-body">
+        <h4>Diagnóstico</h4>
+        <p>Análisis técnico + financiero antes de proponer soluciones. Variables críticas, riesgos y restricciones identificados desde el día uno.</p>
+        <span class="method-output">→ Informe de diagnóstico con datos cuantificados</span>
+      </div>
+    </div>
+    <div class="method-step">
+      <div class="method-number">2</div>
+      <div class="method-body">
+        <h4>Estructura</h4>
+        <p>Documentación de ingeniería bajo normas internacionales. P&IDs, data blocks, RFQs, especificaciones — todo con código, revisión y referencia normativa.</p>
+        <span class="method-output">→ Paquete de ingeniería completo</span>
+      </div>
+    </div>
+    <div class="method-step">
+      <div class="method-number">3</div>
+      <div class="method-body">
+        <h4>Ejecución</h4>
+        <p>Coordinación de proveedores, compras, fabricación y logística. Control de cronograma y costos en tiempo real.</p>
+        <span class="method-output">→ Cronograma + control de costos SAP + hitos</span>
+      </div>
+    </div>
+    <div class="method-step">
+      <div class="method-number">4</div>
+      <div class="method-body">
+        <h4>Comunicación</h4>
+        <p>Traducción de complejidad técnica en mensajes accionables para gerencia. Máximo 3 slides, máximo 30 segundos de lectura.</p>
+        <span class="method-output">→ Presentaciones ejecutivas + reportes RAG</span>
+      </div>
+    </div>
+    <div class="method-step">
+      <div class="method-number">5</div>
+      <div class="method-body">
+        <h4>Aceleración</h4>
+        <p>IA + automatización integrada en todo el ciclo. No como paso final — como capa transversal que acelera cada fase anterior.</p>
+        <span class="method-output">→ Entregables en 40-60% menos tiempo</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CASOS ══════════════════════════════════════════ -->
+<section class="section" id="casos">
+  <div class="section-header reveal">
+    <span class="section-number">04 — Casos Representativos</span>
+    <h2 class="section-title">Resultados medibles,<br>no anécdotas</h2>
+    <div class="divider"></div>
+  </div>
+
+  <div class="cases-grid">
+    <div class="case-card reveal">
+      <div class="case-header">
+        <span class="case-industry">Industria alimentaria · Procurement</span>
+        <h4>Evaluación de 7 proveedores internacionales para línea de envasado</h4>
+      </div>
+      <div class="case-body">
+        <div class="case-metrics">
+          <div class="case-metric">
+            <span class="case-metric-value">7</span>
+            <span class="case-metric-label">Proveedores</span>
+          </div>
+          <div class="case-metric">
+            <span class="case-metric-value">$112K</span>
+            <span class="case-metric-label">Error detectado</span>
+          </div>
+          <div class="case-metric">
+            <span class="case-metric-value">4</span>
+            <span class="case-metric-label">Países</span>
+          </div>
+        </div>
+        <p>Línea 60 BPM azúcar rubia/demerara. Rango USD 451K–994K. Detección de error de USD 112K en oferta de Parsons Eagle (enfardadora cotizada con precio de otro proveedor). Cuadro comparativo con ranking ponderado y recomendación fundamentada.</p>
+        <div class="case-domains">
+          <span class="case-domain-tag">D1 Ingeniería</span>
+          <span class="case-domain-tag">D2 Inversiones</span>
+          <span class="case-domain-tag">D3 Procurement</span>
+          <span class="case-domain-tag">D5 Comunicación</span>
+          <span class="case-domain-tag">D6 IA</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-card reveal">
+      <div class="case-header">
+        <span class="case-industry">Industria alimentaria · CAPEX</span>
+        <h4>Justificación CAPEX USD 526K — Automatización de paletizado</h4>
+      </div>
+      <div class="case-body">
+        <div class="case-metrics">
+          <div class="case-metric">
+            <span class="case-metric-value">2.6</span>
+            <span class="case-metric-label">Años payback</span>
+          </div>
+          <div class="case-metric">
+            <span class="case-metric-value">10</span>
+            <span class="case-metric-label">Operadores</span>
+          </div>
+          <div class="case-metric">
+            <span class="case-metric-value">2</span>
+            <span class="case-metric-label">Errores corregidos</span>
+          </div>
+        </div>
+        <p>2 células robóticas para reemplazar operación manual. Auditoría del modelo financiero reveló multiplicadores inconsistentes y ahorro Año 1 faltante. Payback validado post-corrección. One-pager ejecutivo con tabla de beneficio.</p>
+        <div class="case-domains">
+          <span class="case-domain-tag">D2 Inversiones</span>
+          <span class="case-domain-tag">D5 Comunicación</span>
+          <span class="case-domain-tag">D6 IA</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-card reveal">
+      <div class="case-header">
+        <span class="case-industry">Industria alimentaria · EPC</span>
+        <h4>Ingeniería EPC completa — Proyecto Alfa Chancaca</h4>
+      </div>
+      <div class="case-body">
+        <div class="case-metrics">
+          <div class="case-metric">
+            <span class="case-metric-value">108</span>
+            <span class="case-metric-label">Ítems data block</span>
+          </div>
+          <div class="case-metric">
+            <span class="case-metric-value">130°C</span>
+            <span class="case-metric-label">Aceite térmico</span>
+          </div>
+          <div class="case-metric">
+            <span class="case-metric-value">6</span>
+            <span class="case-metric-label">Brechas técnicas</span>
+          </div>
+        </div>
+        <p>Línea automatizada de chancaca con Alfapack. P&ID ANSI/ISA, Data Block consolidado con codificación ISO 81346, lista de brechas técnicas del proveedor documentada. Sistemas de aceite térmico, glicol y PLC Siemens.</p>
+        <div class="case-domains">
+          <span class="case-domain-tag">D1 Ingeniería</span>
+          <span class="case-domain-tag">D3 Procurement</span>
+          <span class="case-domain-tag">D4 PMO</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-card reveal">
+      <div class="case-header">
+        <span class="case-industry">Ingeniería · Herramienta técnica</span>
+        <h4>Calculadora de bombas auditada — 1,253 fórmulas</h4>
+      </div>
+      <div class="case-body">
+        <div class="case-metrics">
+          <div class="case-metric">
+            <span class="case-metric-value">1,253</span>
+            <span class="case-metric-label">Fórmulas</span>
+          </div>
+          <div class="case-metric">
+            <span class="case-metric-value">10</span>
+            <span class="case-metric-label">Hallazgos</span>
+          </div>
+          <div class="case-metric">
+            <span class="case-metric-value">37</span>
+            <span class="case-metric-label">Ítems checklist</span>
+          </div>
+        </div>
+        <p>Herramienta integral de cálculo y selección de bombas (9 hojas Excel). Auditoría independiente detectó 10 hallazgos técnicos incluyendo bugs críticos en corrección por viscosidad ANSI/HI 9.6.7. Documentada con manual, checklist y 6 limitaciones declaradas.</p>
+        <div class="case-domains">
+          <span class="case-domain-tag">D1 Ingeniería</span>
+          <span class="case-domain-tag">D6 IA</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ INDUSTRIAS ═════════════════════════════════════ -->
+<section class="section" id="industrias">
+  <div class="section-header reveal">
+    <span class="section-number">05 — Industrias y Normativa</span>
+    <h2 class="section-title">Dónde he operado<br>y con qué estándares</h2>
+    <div class="divider"></div>
+  </div>
+
+  <div class="industries-grid reveal">
+    <div class="industry-cell">
+      <div class="industry-name">Industria Alimentaria</div>
+      <div class="industry-standards">BPM · TPM · 5S · HACCP · Inocuidad</div>
+      <div class="industry-context">Azúcar (IANSA), alimentos para mascotas (Nestlé Purina). Producción, envasado, paletizado, control de calidad.</div>
+    </div>
+    <div class="industry-cell">
+      <div class="industry-name">Oil & Gas</div>
+      <div class="industry-standards">PDVSA L-TP · Shell DEPs · ASME B31.3</div>
+      <div class="industry-context">Formación normativa y documental en estándares petroleros. P&IDs, codificación, piping de proceso.</div>
+    </div>
+    <div class="industry-cell">
+      <div class="industry-name">Protección contra Incendios</div>
+      <div class="industry-standards">NFPA 2001 · NCh · FK-5-1-12</div>
+      <div class="industry-context">Diseño de sistemas de agente limpio NOVEC para salas de servidores e instalaciones críticas. AutoCAD Plant 3D.</div>
+    </div>
+    <div class="industry-cell">
+      <div class="industry-name">Infraestructura Institucional</div>
+      <div class="industry-standards">IEC · NEC · NCh Elec · BACnet</div>
+      <div class="industry-context">Subestaciones MT/BT (12KV/0.4KV), HVAC, calderas, BMS, grupos electrógenos. Templo Bahá'í de Sudamérica.</div>
+    </div>
+    <div class="industry-cell">
+      <div class="industry-name">Ingeniería de Proyectos</div>
+      <div class="industry-standards">PMBOK · ISA-5.1 · ISO 81346</div>
+      <div class="industry-context">Ingeniería de detalle para clientes industriales. Cuadros de carga, diagramas unilineales, especificaciones técnicas.</div>
+    </div>
+    <div class="industry-cell">
+      <div class="industry-name">Educación en Ingeniería</div>
+      <div class="industry-standards">PRO II · HTRI · HYSYS</div>
+      <div class="industry-context">Docencia universitaria en Dinámica y Control de Procesos e Instrumentación Industrial. Diseño de planes de estudio.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TOOLKIT ════════════════════════════════════════ -->
+<section class="section" id="toolkit">
+  <div class="section-header reveal">
+    <span class="section-number">06 — Toolkit Tecnológico</span>
+    <h2 class="section-title">Herramientas con nivel<br>de dominio real</h2>
+    <div class="divider"></div>
+  </div>
+
+  <div class="toolkit-grid reveal">
+    <div class="tool-cell">
+      <div class="tool-name">Excel + VBA</div>
+      <div class="tool-use">Modelos CAPEX, calculadoras, automatización</div>
+      <div class="proficiency-bar"><div class="proficiency-fill prof-expert" style="width:95%"></div></div>
+    </div>
+    <div class="tool-cell">
+      <div class="tool-name">AutoCAD Plant 3D</div>
+      <div class="tool-use">P&IDs, isométricos, sistemas de proceso</div>
+      <div class="proficiency-bar"><div class="proficiency-fill prof-expert" style="width:90%"></div></div>
+    </div>
+    <div class="tool-cell">
+      <div class="tool-name">SAP PS</div>
+      <div class="tool-use">Control de costos, KSB1, KKBC, S_ALR</div>
+      <div class="proficiency-bar"><div class="proficiency-fill prof-expert" style="width:88%"></div></div>
+    </div>
+    <div class="tool-cell">
+      <div class="tool-name">Power BI + DAX</div>
+      <div class="tool-use">Dashboards, KPIs costo/ton</div>
+      <div class="proficiency-bar"><div class="proficiency-fill prof-advanced" style="width:82%"></div></div>
+    </div>
+    <div class="tool-cell">
+      <div class="tool-name">Smartsheet</div>
+      <div class="tool-use">PMO, Gantt, portafolio, reportes</div>
+      <div class="proficiency-bar"><div class="proficiency-fill prof-expert" style="width:92%"></div></div>
+    </div>
+    <div class="tool-cell">
+      <div class="tool-name">Microsoft Project</div>
+      <div class="tool-use">Cronogramas, hitos, ruta crítica</div>
+      <div class="proficiency-bar"><div class="proficiency-fill prof-advanced" style="width:80%"></div></div>
+    </div>
+    <div class="tool-cell">
+      <div class="tool-name">Claude AI (Opus)</div>
+      <div class="tool-use">Auditoría, documentación, análisis</div>
+      <div class="proficiency-bar"><div class="proficiency-fill prof-expert" style="width:95%"></div></div>
+    </div>
+    <div class="tool-cell">
+      <div class="tool-name">DWSIM / HYSYS</div>
+      <div class="tool-use">Simulación de procesos</div>
+      <div class="proficiency-bar"><div class="proficiency-fill prof-intermediate" style="width:65%"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ VISIÓN ═════════════════════════════════════════ -->
+<section class="section" id="vision">
+  <div class="section-header reveal">
+    <span class="section-number">07 — Visión Profesional</span>
+    <h2 class="section-title">De ejecución técnica a<br>liderazgo de operaciones</h2>
+    <div class="divider"></div>
+  </div>
+
+  <div class="vision-cards reveal">
+    <div class="vision-card">
+      <div class="vision-horizon">Corto plazo · 2026</div>
+      <div class="vision-goal">Portafolio CAPEX con entregables de clase mundial</div>
+      <div class="vision-action">Estandarizar este Playbook como guía operativa replicable. Primeras 3 publicaciones técnicas en LinkedIn sobre ingeniería + IA aplicada.</div>
+    </div>
+    <div class="vision-card">
+      <div class="vision-horizon">Mediano plazo · 2027–2028</div>
+      <div class="vision-goal">Jefe de Proyectos Senior o Gerente de Operaciones</div>
+      <div class="vision-action">Formación complementaria en administración de operaciones. Publicación consistente en LinkedIn (2x/semana). Network activo en la industria alimentaria y manufacturera chilena.</div>
+    </div>
+    <div class="vision-card">
+      <div class="vision-horizon">Largo plazo · 2029+</div>
+      <div class="vision-goal">Referente en Ingeniería de Proyectos + IA en LATAM</div>
+      <div class="vision-action">Serie de contenido técnico sobre cómo la IA transforma la ingeniería de proyectos industriales. Speaking en conferencias del sector. Mentoría a ingenieros junior.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-name">John Partidas</div>
+  <div class="footer-role">Ingeniero de Proyectos de Capital</div>
+  <div class="footer-tags">
+    <span class="footer-tag">Ing. Químico</span>
+    <span class="footer-tag">T.S.U. Instrumentación</span>
+    <span class="footer-tag">IA Aplicada</span>
+    <span class="footer-tag">Multi-industria</span>
+  </div>
+  <div class="footer-contact">
+    Santiago, Chile · linkedin.com/in/johnpartidas
+  </div>
+  <div class="footer-version">Abril 2026</div>
+</footer>
+
+<script>
+// ── Domain tabs ───────────────────────────────────────
+function showDomain(index) {
+  document.querySelectorAll('.domain-tab').forEach((t, i) => t.classList.toggle('active', i === index));
+  document.querySelectorAll('.domain-panel').forEach((p, i) => p.classList.toggle('active', i === index));
+}
+
+// ── Scroll reveal ─────────────────────────────────────
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ── Nav highlight ─────────────────────────────────────
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('.nav a');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const top = section.offsetTop - 100;
+    if (window.scrollY >= top) current = section.getAttribute('id');
+  });
+  navLinks.forEach(link => {
+    link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+  });
+});
+
+// ── Proficiency bars animate on scroll ────────────────
+const toolObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.proficiency-fill').forEach(bar => {
+        const w = bar.style.width;
+        bar.style.width = '0%';
+        setTimeout(() => bar.style.width = w, 100);
+      });
+    }
+  });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('.toolkit-grid').forEach(el => toolObserver.observe(el));
+</script>
+</body>
+</html>
