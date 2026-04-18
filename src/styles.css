@@ -1,0 +1,53 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  background: #f5f7fb;
+  color: #172133;
+}
+
+body { margin: 0; }
+
+* { box-sizing: border-box; }
+
+.app-shell { max-width: 1200px; margin: 0 auto; padding: 1rem; }
+
+.top-bar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+.top-bar h1 { margin: 0 0 0.25rem 0; font-size: 1.4rem; }
+.top-bar p { margin: 0; color: #5d6a82; }
+
+.tab-nav { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+.tab { border: 1px solid #c7d2ea; background: white; padding: 0.5rem 0.8rem; border-radius: 8px; cursor: pointer; }
+.tab.active { background: #1d4ed8; color: #fff; border-color: #1d4ed8; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1rem; }
+.card { background: white; border: 1px solid #dbe2ef; border-radius: 12px; padding: 1rem; }
+.card h2 { margin-top: 0; font-size: 1.05rem; }
+
+.kpis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; margin-top: 1rem; }
+.kpis div { background: #f3f6fc; border-radius: 8px; padding: 0.6rem; display: flex; flex-direction: column; }
+.kpis strong { font-size: 1.2rem; }
+.kpis span { color: #5a6782; font-size: 0.82rem; }
+
+.form-grid { display: grid; gap: 0.5rem; }
+input, select, textarea, button { font: inherit; }
+input, select, textarea { width: 100%; border: 1px solid #c7d2ea; border-radius: 8px; padding: 0.5rem 0.6rem; background: #fff; }
+textarea { min-height: 70px; resize: vertical; }
+button { border: 1px solid #1d4ed8; border-radius: 8px; background: #1d4ed8; color: #fff; padding: 0.5rem 0.8rem; cursor: pointer; }
+button:hover { opacity: 0.95; }
+
+.danger-btn { background: #b91c1c; border-color: #b91c1c; }
+
+.list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.5rem; }
+.list li { border: 1px solid #e4e9f4; border-radius: 8px; padding: 0.6rem; display: flex; justify-content: space-between; gap: 0.5rem; }
+
+.pill { font-size: 0.72rem; padding: 0.2rem 0.45rem; border-radius: 999px; font-weight: 600; }
+.pill.green { background: #dcfce7; color: #166534; }
+.pill.yellow { background: #fef9c3; color: #854d0e; }
+.pill.red { background: #fee2e2; color: #991b1b; }
+
+.score { font-size: 1.5rem; font-weight: 700; margin: 0.25rem 0; }
+.small { color: #67738d; font-size: 0.8rem; }
+
+.error { color: #b91c1c; margin-top: 0.4rem; }
+.error.global { margin: 0 0 1rem; }
+
+.empty-state { padding: 1rem; border: 1px dashed #b8c3da; border-radius: 8px; color: #66748f; text-align: center; }
